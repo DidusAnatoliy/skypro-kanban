@@ -4,21 +4,21 @@ export const cardList = [
         topic: 'Web Design',
         title: 'Название задачи',
         date: '30.10.23',
-        status: 'Без статуса'
+        status: 'В работе'
     },
     {
         id: 2,
         topic: 'Research',
         title: 'Название задачи',
         date: '30.10.23',
-        status: 'Без статуса'
+        status: 'Нужно сделать'
     },
     {
         id: 3,
         topic: 'Web Design',
         title: 'Название задачи',
         date: '30.10.23',
-        status: 'Без статуса'
+        status: 'Тестирование'
     },
     {
         id: 4,
@@ -26,37 +26,8 @@ export const cardList = [
         title: 'Название задачи',
         date: '30.10.23',
         status: 'Без статуса'
-    },
-    {
-        id: 5,
-        topic: 'Web Design',
-        title: 'Название задачи',
-        date: '30.10.23',
-        status: 'Без статуса'
-    },
-    {
-        id: 6,
-        topic: 'Research',
-        title: 'Название задачи',
-        date: '30.10.23',
-        status: 'Нужно сделать'
-    },
-    {
-        id: 7,
-        topic: 'Research',
-        title: 'Название задачи',
-        date: '30.10.23',
-        status: 'В работе'
-    },
-    {
-        id: 8,
-        topic: 'Web Design',
-        title: 'Название задачи',
-        date: '30.10.23',
-        status: 'В работе'
-    },
-    
-    
+    }
+   
 ]
 
 export const statusList = [
