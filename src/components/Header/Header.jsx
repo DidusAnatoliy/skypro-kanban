@@ -30,7 +30,7 @@ function Header({ cards, setCards }) {
             <button onClick={onClick} className="header__btn-main-new _hover01" id="btnMainNew">
               <a href="#popNewCard">Создать новую задачу</a>
             </button>
-            <a onClick={toggleDropdown} href="#user-set-target" className="header__user _hover02">Ivan Ivanov</a>
+            <a onClick={toggleDropdown} className="header__user _hover02">Ivan Ivanov</a>
             {isOpen && (<PopUser />)}
           </nav>
         </div>

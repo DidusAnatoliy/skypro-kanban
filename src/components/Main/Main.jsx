@@ -16,9 +16,9 @@ function Main({cards}) {
         <div className="main__block">
         {isLoading ? (
           <div className="main__content">
-          {statusList.map((status, index) => {
+          {statusList.map((status, id) => {
               return <Column 
-              key={index}
+              key={id}
               status={status}
               cardList={cards.filter((card) => card.status === status)}
               />
