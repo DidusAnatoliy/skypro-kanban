@@ -1,14 +1,23 @@
+
 import Card from "../Card/Card.jsx"
 
-
-function Column({name}) {
+function Column({status, cardList}) {
   return (
     <div className="main__column">
       <div className="column__title">
-        <p>{name}</p>
+        <p>{status}</p>
       </div>
       <div className="cards">
-        <Card/>
+      {cardList.map((card) => {
+        return (
+          <Card 
+          topic={card.topic}
+          title={card.title}
+          date={card.date}
+          key={card.id}
+          />
+        );
+        })}
       </div>
     </div>
   )
