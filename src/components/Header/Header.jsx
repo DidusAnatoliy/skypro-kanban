@@ -1,5 +1,6 @@
-import PopUser from "../Popups/PopUser/PopUser.jsx";
+import PopUser from "../Popups/PopUser/PopUser";
 import { useState } from "react";
+import * as S from "./Header.styled"
 
 function Header({ cards, setCards }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,13 +24,14 @@ function Header({ cards, setCards }) {
           <div className="header__logo _show _light">
             <a href="" target="_self"><img src="/images/logo.png" alt="logo" /></a>
           </div>
-          <div className="header__logo _dark">
+          {/* <div className="header__logo _dark">
             <a href="" target="_self"><img src="/images/logo_dark.png" alt="logo" /></a>
-          </div>
+          </div> */}
           <nav className="header__nav">
-            <button onClick={onClick} className="header__btn-main-new _hover01" id="btnMainNew">
-              <a href="#popNewCard">Создать новую задачу</a>
-            </button>
+            <S.HeaderButton onClick={onClick} id="btnMainNew">
+              Создать новую задачу
+              {/* <a href="#popNewCard">Создать новую задачу</a> */}
+            </S.HeaderButton>
             <a onClick={toggleDropdown} className="header__user _hover02">Ivan Ivanov</a>
             {isOpen && (<PopUser />)}
           </nav>
