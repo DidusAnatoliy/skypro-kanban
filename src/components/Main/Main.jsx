@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { statusList } from "../../data.js"
 import Column from "../Column/Column.jsx"
-
+import * as S from "./Main.styled.js"
+import { Container } from "../Common/Common.styled.js"
 
 function Main({cards}) {
   const [isLoading, setIsLoading] = useState(false)
@@ -11,11 +12,11 @@ function Main({cards}) {
     }, 2000); 
   }, []);
   return (
-    <main className="main">
-      <div className="container">
-        <div className="main__block">
+    <S.Main>
+      <Container>
+      <S.MainBlock>
         {isLoading ? (
-          <div className="main__content">
+          <S.MainContent>
           {statusList.map((status, id) => {
               return <Column 
               key={id}
@@ -23,10 +24,10 @@ function Main({cards}) {
               cardList={cards.filter((card) => card.status === status)}
               />
             })}
-          </div>): "Загрузка..."}
-        </div>
-      </div>
-    </main>
+          </S.MainContent>): "Загрузка..."}
+          </S.MainBlock>
+        </Container>
+      </S.Main>
   )
 }
 

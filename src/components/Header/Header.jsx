@@ -1,6 +1,7 @@
 import PopUser from "../Popups/PopUser/PopUser";
 import { useState } from "react";
 import * as S from "./Header.styled"
+import { Container } from "../Common/Common.styled";
 
 function Header({ cards, setCards }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +20,7 @@ function Header({ cards, setCards }) {
   }
   return (
     <S.Header>
-      <div className="container">
+      <Container>
         <S.HeaderBlock>
           <S.Logo>
             <a href="" target="_self"><img src="/images/logo.png" alt="logo" /></a>
@@ -36,7 +37,7 @@ function Header({ cards, setCards }) {
             {isOpen && (<PopUser />)}
           </S.Nav>
         </S.HeaderBlock>
-      </div>
+      </Container>
     </S.Header>
   )
 }
