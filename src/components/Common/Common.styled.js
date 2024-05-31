@@ -6,3 +6,10 @@ export const hover01 = css`
   }
 `;
 
+export const hover02 = css`
+  &:hover {
+    color: #33399b;
+    border-left-color: #33399b;
+    border-bottom-color: #33399b;
+  }
+`;

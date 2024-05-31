@@ -18,26 +18,26 @@ function Header({ cards, setCards }) {
     setCards([...cards, newCard]);
   }
   return (
-    <header className="header">
+    <S.Header>
       <div className="container">
-        <div className="header__block">
-          <div className="header__logo _show _light">
+        <S.HeaderBlock>
+          <S.Logo>
             <a href="" target="_self"><img src="/images/logo.png" alt="logo" /></a>
-          </div>
+          </S.Logo>
           {/* <div className="header__logo _dark">
             <a href="" target="_self"><img src="/images/logo_dark.png" alt="logo" /></a>
           </div> */}
-          <nav className="header__nav">
+          <S.Nav>
             <S.HeaderButton onClick={onClick} id="btnMainNew">
               Создать новую задачу
               {/* <a href="#popNewCard">Создать новую задачу</a> */}
             </S.HeaderButton>
-            <a onClick={toggleDropdown} className="header__user _hover02">Ivan Ivanov</a>
+            <S.User onClick={toggleDropdown}>Ivan Ivanov</S.User>
             {isOpen && (<PopUser />)}
-          </nav>
-        </div>
+          </S.Nav>
+        </S.HeaderBlock>
       </div>
-    </header>
+    </S.Header>
   )
 }
 
