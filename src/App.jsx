@@ -14,13 +14,11 @@ function App() {
   return (
     <>
     <GlobalStyle/>
-    <div className="wrapper">
       <PopExit/>
       <PopNewCard/>
       <PopBrowse/>
       <Header setCards={setCards} cards={cards}/>
-      <Main cards={cards}/>
-    </div>
+      <Main cards={cards}/>  
     </>
   )
 }
