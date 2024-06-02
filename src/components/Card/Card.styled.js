@@ -29,9 +29,45 @@ export const CardTopic = styled.div`
   padding: 5px 14px;
   border-radius: 18px;
   background-color: ${({ $topicColor }) =>
-    topicStyles[$topicColor]?.backgroundColor || "#b4fdd1"};
+        topicStyles[$topicColor]?.backgroundColor || "#b4fdd1"};
 
   ${TopicText} {
     color: ${({ $topicColor }) => topicStyles[$topicColor]?.color || "#06b16e"};
   }
+`;
+export const CardBtn = styled.div` 
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center; 
+  justify-content: space-around;
+  padding: 2px;
+`;
+
+export const CardContent = styled.div`
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
+export const CardTitle = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #000000;
+  margin-bottom: 10px;
+`;
+export const CardDate = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
+export const CardDateP = styled.p`
+  margin-left: 6px;
+  font-size: 10px;
+  line-height: 13px;
+  color: #94A6BE;
+  letter-spacing: 0.2px;
 `;

@@ -7,18 +7,20 @@ import Main from "./components/Main/Main.jsx"
 import { useState } from 'react'
 import { cardList } from './data.js'
 import { GlobalStyle } from './Global.styled.js'
-
+import * as S from "./components/Common/Common.styled.js"
 
 function App() {
   const [cards, setCards] = useState(cardList);
   return (
     <>
-    <GlobalStyle/>
-      <PopExit/>
-      <PopNewCard/>
-      <PopBrowse/>
-      <Header setCards={setCards} cards={cards}/>
-      <Main cards={cards}/>  
+      <S.Wrapper>
+        <GlobalStyle />
+        <PopExit />
+        <PopNewCard />
+        <PopBrowse />
+        <Header setCards={setCards} cards={cards} />
+        <Main cards={cards} />
+      </S.Wrapper>
     </>
   )
 }
