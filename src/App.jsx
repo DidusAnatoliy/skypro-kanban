@@ -6,18 +6,22 @@ import Header from './components/Header/Header.jsx'
 import Main from "./components/Main/Main.jsx"
 import { useState } from 'react'
 import { cardList } from './data.js'
-
+import { GlobalStyle } from './Global.styled.js'
+import * as S from "./components/Common/Common.styled.js"
 
 function App() {
   const [cards, setCards] = useState(cardList);
   return (
-    <div className="wrapper">
-      <PopExit/>
-      <PopNewCard/>
-      <PopBrowse/>
-      <Header setCards={setCards} cards={cards}/>
-      <Main cards={cards}/>
-    </div>
+    <>
+      <S.Wrapper>
+        <GlobalStyle />
+        <PopExit />
+        <PopNewCard />
+        <PopBrowse />
+        <Header setCards={setCards} cards={cards} />
+        <Main cards={cards} />
+      </S.Wrapper>
+    </>
   )
 }
 

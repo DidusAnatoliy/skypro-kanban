@@ -1,17 +1,18 @@
+import * as S from "./PopUser.styled.js"
 
 function PopUser() {
   return (
-    <div className="header__pop-user-set pop-user-set" id="user-set-target">
-      <p className="pop-user-set__name">Ivan Ivanov</p>
-      <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-      <div className="pop-user-set__theme">
+    <S.HeaderPopSet id="user-set-target">
+      <S.PopUserName>Ivan Ivanov</S.PopUserName>
+      <S.PopUserMail>ivan.ivanov@gmail.com</S.PopUserMail>
+      <S.ThemeToggle>
         <p>Темная тема</p>
-        <input type="checkbox" className="checkbox" name="checkbox"/>
-      </div>
-      <button type="button" className="_hover03">
+        <input type="checkbox" name="checkbox"/>
+      </S.ThemeToggle>
+      <S.ButtonUsetPop>
         <a href="#popExit">Выйти</a>
-      </button>
-    </div>
+        </S.ButtonUsetPop>
+      </S.HeaderPopSet>
   )
 }
 
