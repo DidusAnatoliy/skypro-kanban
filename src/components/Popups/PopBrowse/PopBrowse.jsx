@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Calendar from "../../Calendar/Calendar.jsx"
 
 
@@ -71,7 +72,7 @@ function PopBrowse() {
                 </button>
               </div>
               <button className="btn-browse__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
+                <Link to="/">Закрыть</Link>
               </button>
             </div>
             <div className="pop-browse__btn-edit _hide">
@@ -87,7 +88,7 @@ function PopBrowse() {
                 </button>
               </div>
               <button className="btn-edit__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
+                <Link to="/">Закрыть</Link>
               </button>
             </div>
           </div>

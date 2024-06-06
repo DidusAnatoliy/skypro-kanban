@@ -1,11 +1,9 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
-import { routesPages } from '../../lib/routes'
+import { paths } from '../../data';
 
-export default function PrivateRoute({isAuth}) {
-  return (
-    <>
-     {!isAuth ? <Outlet/>:<Navigate to={routesPages.SIGNIN}/>} 
-    </>
-  )
+function PrivateRoute({ isAuth }) {
+  return (isAuth ? <Outlet/> : <Navigate to={paths.LOGIN}/>);
 }
+
+export default PrivateRoute;

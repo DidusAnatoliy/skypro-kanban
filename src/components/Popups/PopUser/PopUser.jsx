@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import * as S from "./PopUser.styled.js"
 
 function PopUser() {
@@ -10,7 +11,7 @@ function PopUser() {
         <input type="checkbox" name="checkbox"/>
       </S.ThemeToggle>
       <S.ButtonUsetPop>
-        <a href="#popExit">Выйти</a>
+        <Link to="/exit">Выйти</Link>
         </S.ButtonUsetPop>
       </S.HeaderPopSet>
   )
