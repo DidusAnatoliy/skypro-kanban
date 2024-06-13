@@ -1,30 +1,28 @@
-import { useEffect, useState } from "react"
+
 import { statusList } from "../../data.js"
 import Column from "../Column/Column.jsx"
 import * as S from "./Main.styled.js"
 import { Container } from "../Common/Common.styled.js"
 
-function Main({cards}) {
-  const [isLoading, setIsLoading] = useState(false)
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(true);
-    }, 2000); 
-  }, []);
+function Main({ cards, isLoading, error }) {
+  
   return (
     <S.Main>
       <Container>
       <S.MainBlock>
         {isLoading ? (
           <S.MainContent>
-          {statusList.map((status, id) => {
-              return <Column 
-              key={id}
+          {statusList.map((status, index) => {
+              return (
+              <Column 
+              key={index}
               status={status}
               cardList={cards.filter((card) => card.status === status)}
               />
+              );
             })}
-          </S.MainContent>): "Загрузка..."}
+          </S.MainContent>): ("Загрузка...")}
+          {error && <p style={{ color: "red" }}>Ошибка, попробуйте позже</p>}
           </S.MainBlock>
         </Container>
       </S.Main>

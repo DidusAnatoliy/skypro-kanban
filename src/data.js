@@ -46,3 +46,9 @@ export const statusList = [
     CARD: "/card/:id",
     NOT_FOUND: "*",
   };
+
+  export const formFields = {
+    name: "",
+    login: "",
+    password: "",
+};

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import * as S from "./PopExit.styled"
 import { paths } from "../../../data"
 
-function PopExit({Authorization}) {
+function PopExit({Logout}) {
   return (
     <S.PopExit id="popExit">
       <S.PopExitContainer>
@@ -13,7 +13,7 @@ function PopExit({Authorization}) {
           <form className="pop-exit__form" id="formExit" action="#">
             <S.PopExitGroup>
               <S.PopExitYes id="exitYes">
-                <Link to={paths.LOGIN} onClick={Authorization}>Да, выйти</Link>
+                <Link to={paths.LOGIN} onClick={Logout}>Да, выйти</Link>
               </S.PopExitYes>
               <S.PopExitNo id="exitNo">
                 <Link to={paths.MAIN}>Нет, остаться</Link>

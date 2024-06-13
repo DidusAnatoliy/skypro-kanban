@@ -11,7 +11,31 @@ import {
   ModalTtl,
 } from "./RegisterStyle";
 import { paths } from "../../data";
-const Register = ({Authorization}) => {
+import { useState } from "react";
+import { registerUser } from "../../Api";
+import { sanitizeHtml } from "../../lib/sanitizeHtml";
+
+const Register = ({ userReg }) => {
+  const [error, setError] = useState(null);
+
+  const [name, setName] = useState("");
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleInputChange = async () => {
+    await registerUser({ name:sanitizeHtml(name), login:sanitizeHtml(login), password:sanitizeHtml(password) })
+      .then((response) => {
+        userReg(response.user);
+      })
+      .catch((err) => {
+        console.log(err.message)
+        setError(err.message)
+      });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Wrapper>
       <ContainerSignup>
@@ -22,25 +46,37 @@ const Register = ({Authorization}) => {
             </ModalTtl>
             <ModalFormLogin id="formLogUp" action="#">
               <ModalInput
+              onSubmit={handleSubmit}
                 type="text"
-                name="first-name"
+                name="name"
                 id="first-name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Имя"
               />
               <ModalInput
+              onSubmit={handleSubmit}
                 type="text"
                 name="login"
                 id="loginReg"
+                value={login}
+                onChange={(e) => setLogin(e.target.value)}
                 placeholder="Эл. почта"
               />
               <ModalInput
+              onSubmit={handleSubmit}
                 type="password"
                 name="password"
                 id="passwordFirst"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Пароль"
               />
+              {error && (
+                <p style={{ color: "red" }}>{error}</p>
+              )}
               <ModalBtnEnter id="SignUpEnter">
-                <Link to={paths.MAIN} onClick={Authorization}>Зарегистрироваться</Link>
+                <Link onClick={handleInputChange}>Зарегистрироваться</Link>
               </ModalBtnEnter>
               <ModalFormGroup>
                 <p>

@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
 import * as S from "./PopUser.styled.js"
 
-function PopUser() {
+function PopUser({user}) {
   return (
     <S.HeaderPopSet id="user-set-target">
-      <S.PopUserName>Ivan Ivanov</S.PopUserName>
-      <S.PopUserMail>ivan.ivanov@gmail.com</S.PopUserMail>
+      <S.PopUserName>{user}</S.PopUserName>
+      <S.PopUserMail>{user}</S.PopUserMail>
       <S.ThemeToggle>
         <p>Темная тема</p>
         <input type="checkbox" name="checkbox"/>
