@@ -37,3 +37,12 @@ export const statusList = [
     "Тестирование",
     "Готово",
   ];
+  
+  export const paths = {
+    MAIN: "/",
+    EXIT: "/exit",
+    LOGIN: "/login",
+    REGISTER: "/register",
+    CARD: "/card/:id",
+    NOT_FOUND: "*",
+  };

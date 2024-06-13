@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom';
 import * as S from './Card.styled'
-function Card({ topic, title, date }) {
+function Card({ topic, title, date, id }) {
   const topicColors = {
     "Web Design": "_orange",
     Copywriting: "_purple",
@@ -14,13 +15,13 @@ function Card({ topic, title, date }) {
           <S.CardTopic $topicColor={color}>
             <S.TopicText>{topic}</S.TopicText>
           </S.CardTopic>
-          <a href="#popBrowse" target="_self">
+          <Link to={`card/${id}`}>
             <S.CardBtn>
               <div />
               <div />
               <div />
             </S.CardBtn>
-          </a>
+          </Link>
         </div>
         <S.CardContent>
           <a href="" target="_blank">

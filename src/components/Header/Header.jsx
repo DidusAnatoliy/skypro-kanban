@@ -2,6 +2,7 @@ import PopUser from "../Popups/PopUser/PopUser";
 import { useState } from "react";
 import * as S from "./Header.styled"
 import { Container } from "../Common/Common.styled";
+import { Link } from "react-router-dom";
 
 function Header({ cards, setCards }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,10 +24,10 @@ function Header({ cards, setCards }) {
       <Container>
         <S.HeaderBlock>
           <S.Logo>
-            <a href="" target="_self"><img src="/images/logo.png" alt="logo" /></a>
+            <Link to="" target="_self"><img src="/images/logo.png" alt="logo" /></Link>
           </S.Logo>
           {/* <div className="header__logo _dark">
-            <a href="" target="_self"><img src="/images/logo_dark.png" alt="logo" /></a>
+            <Link="" target="_self"><img src="/images/logo_dark.png" alt="logo" /></Link>
           </div> */}
           <S.Nav>
             <S.HeaderButton onClick={onClick} id="btnMainNew">
