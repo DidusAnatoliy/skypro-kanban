@@ -11,7 +11,7 @@ function Column({status, cardList}) {
       {cardList.map((card) => {
         return (
           <Card 
-          key={card.id}{...card}
+          key={card._id}{...card}
           />
         );
         })}

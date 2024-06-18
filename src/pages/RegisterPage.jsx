@@ -1,9 +1,9 @@
 
 import Register from "../components/Register/Register";
 
-const RegisterPage = ({Authorization}) => {
+const RegisterPage = ({userReg}) => {
   return (
-    <Register Authorization={Authorization}/>
+    <Register userReg={userReg}/>
   )
 }
 

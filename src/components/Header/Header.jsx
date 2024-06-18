@@ -4,7 +4,7 @@ import * as S from "./Header.styled"
 import { Container } from "../Common/Common.styled";
 import { Link } from "react-router-dom";
 
-function Header({ cards, setCards }) {
+function Header({ cards, setCards, user }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => {
     setIsOpen((prevState) => !prevState);
@@ -34,8 +34,8 @@ function Header({ cards, setCards }) {
               Создать новую задачу
               {/* <a href="#popNewCard">Создать новую задачу</a> */}
             </S.HeaderButton>
-            <S.User onClick={toggleDropdown}>Ivan Ivanov</S.User>
-            {isOpen && (<PopUser />)}
+            <S.User onClick={toggleDropdown} user={user}>{user.name}</S.User>
+            {isOpen && (<PopUser user={user}/>)}
           </S.Nav>
         </S.HeaderBlock>
       </Container>
