@@ -16,7 +16,10 @@ const Login = ({ userLogin }) => {
     e.preventDefault();
     
 
-
+    if (!login.trim()||!password.trim()){
+      setError("Заполните поля") 
+      return
+    }
     await loginUser({ login, password })
       .then((response) => {
         userLogin(response.user);

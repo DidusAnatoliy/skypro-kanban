@@ -35,7 +35,7 @@ function Header({ cards, setCards, user }) {
               {/* <a href="#popNewCard">Создать новую задачу</a> */}
             </S.HeaderButton>
             <S.User onClick={toggleDropdown} user={user}>{user.name}</S.User>
-            {isOpen && (<PopUser />)}
+            {isOpen && (<PopUser user={user}/>)}
           </S.Nav>
         </S.HeaderBlock>
       </Container>

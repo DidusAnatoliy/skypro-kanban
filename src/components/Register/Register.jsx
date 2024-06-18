@@ -23,6 +23,10 @@ const Register = ({ userReg }) => {
   const [password, setPassword] = useState("");
 
   const handleInputChange = async () => {
+  if (!name.trim()||!login.trim()||!password.trim()){
+    setError("Заполните поля") 
+    return
+  }
     await registerUser({ name:sanitizeHtml(name), login:sanitizeHtml(login), password:sanitizeHtml(password) })
       .then((response) => {
         userReg(response.user);
