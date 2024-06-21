@@ -1,8 +1,33 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Calendar from "../../Calendar/Calendar.jsx"
-
+import { useState } from "react"
+import { postTodos } from "../../../Api.js"
+import { useUserContext, useCardContext } from "../../../contexts/useUser.jsx"
 
 function PopNewCard() {
+  const {setCards} = useCardContext();
+
+  const [selected, setSelected] = useState();
+
+  const [newCard, setNewCard] = useState({
+    title: "",
+    description: "",
+    topic: "",
+  });
+  const { user } = useUserContext();
+  const navigate = useNavigate();
+
+
+  const handleSibmit = async (e) => {
+    e.preventDefault();
+    const newCardUser = { ...newCard, date: selected };
+    postTodos({ ...newCardUser, token: user?.token })
+      .then((response) => {
+        setCards(response.tasks);
+        navigate(-1);
+      })
+      .catch((error) => console.log(error.message));
+  };
   return (
     <div className="pop-new-card" id="popNewCard">
       <div className="pop-new-card__container">
@@ -14,21 +39,65 @@ function PopNewCard() {
               <form className="pop-new-card__form form-new" id="formNewCard" action="#">
                 <div className="form-new__block">
                   <label htmlFor="formTitle" className="subttl">Название задачи</label>
-                  <input className="form-new__input" type="text" name="name" id="formTitle"
-                         placeholder="Введите название задачи..." autoFocus=""/>
+                  <input onChange={(e) =>
+                      setNewCard({ ...newCard, title: e.target.value })
+                    }
+                    className="form-new__input"
+                    type="text"
+                    name="name"
+                    id="formTitle"
+                    placeholder="Введите название задачи..."
+                    autoFocus/>
                 </div>
                 <div className="form-new__block">
                   <label htmlFor="textArea" className="subttl">Описание задачи</label>
-                  <textarea className="form-new__area" name="text" id="textArea"
-                            placeholder="Введите описание задачи..." defaultValue={""}/>
+                  <textarea
+                    onChange={(e) =>
+                      setNewCard({ ...newCard, description: e.target.value })
+                    }
+                    className="form-new__area"
+                    name="text"
+                    id="textArea"
+                    placeholder="Введите описание задачи...">
+                    </textarea>
                 </div>
               </form>
-              <Calendar/>
+              <div className="pop-new-card__calendar calendar">
+                <Calendar selected={selected} setSelected={setSelected} />
+              </div>
             </div>
             <div className="pop-new-card__categories categories">
               <p className="categories__p subttl">Категория</p>
               <div className="categories__themes">
-                <div className="categories__theme _orange _active-category">
+              <label>
+                  Web Design
+                  <input
+                    type="radio"
+                    onChange={(e) =>
+                      setNewCard({ ...newCard, topic: e.target.value })
+                    }
+                  />
+                </label>
+
+                <label>
+                  Research
+                  <input
+                    type="radio"
+                    onChange={(e) =>
+                      setNewCard({ ...newCard, topic: e.target.value })
+                    }
+                  />
+                </label>
+                <label>
+                  Copywriting
+                  <input
+                    type="radio"
+                    onChange={(e) =>
+                      setNewCard({ ...newCard, topic: e.target.value })
+                    }
+                  />
+                </label>
+                {/* <div className="categories__theme _orange _active-category">
                   <p className="_orange">Web Design</p>
                 </div>
                 <div className="categories__theme _green">
@@ -36,15 +105,21 @@ function PopNewCard() {
                 </div>
                 <div className="categories__theme _purple">
                   <p className="_purple">Copywriting</p>
-                </div>
+                </div> */}
               </div>
             </div>
-            <button className="form-new__create _hover01" id="btnCreate">Создать задачу</button>
+            <button
+              className="form-new__create _hover01"
+              onClick={handleSibmit}
+              id="btnCreate"
+            >
+              Создать задачу
+            </button>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default PopNewCard
+export default PopNewCard;

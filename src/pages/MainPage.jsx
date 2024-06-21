@@ -3,29 +3,31 @@ import { useState, useEffect } from "react";
 import Header from "../components/Header/Header";
 import { Outlet } from "react-router-dom";
 import { getTodos } from "../Api";
+import { useCardContext, useUserContext } from "../contexts/useUser";
 
-const MainPage = ({user}) => {
-  const [cards, setCards] = useState([]);
+const MainPage = () => {
+  const { user } = useUserContext();
+  const { setCards } = useCardContext();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getTodos({token: user.token}).then((data) => {
+    getTodos({ token: user.token }).then((data) => {
       setCards(data.tasks);
     })
-    .catch((err)=>{
-      setError(err.message)
-    })
-    .finally(()=>{
-      setIsLoading(true);
-    })
-  }, 
-  []);
+      .catch((err) => {
+        setError(err.message)
+      })
+      .finally(() => {
+        setIsLoading(true);
+      })
+  },
+    [user, setCards]);
   return (
     <>
-    <Header setCards={setCards} cards={cards} user={user} />
-    <Main error={error} cards={cards} isLoading={isLoading}/>
-    <Outlet/>
+      <Header />
+      <Main error={error} isLoading={isLoading} />
+      <Outlet />
     </>
   )
 }

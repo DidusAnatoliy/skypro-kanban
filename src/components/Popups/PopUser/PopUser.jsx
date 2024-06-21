@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom"
 import * as S from "./PopUser.styled.js"
+import { paths } from "../../../data.js"
+import { useUserContext } from "../../../contexts/useUser.jsx"
 
-function PopUser({user}) {
+function PopUser() {
+  const {user} = useUserContext();
   return (
     <S.HeaderPopSet id="user-set-target">
       <S.PopUserName>{user.name}</S.PopUserName>
@@ -11,7 +14,7 @@ function PopUser({user}) {
         <input type="checkbox" name="checkbox"/>
       </S.ThemeToggle>
       <S.ButtonUsetPop>
-        <Link to="/exit">Выйти</Link>
+        <Link to={paths.EXIT}>Выйти</Link>
         </S.ButtonUsetPop>
       </S.HeaderPopSet>
   )

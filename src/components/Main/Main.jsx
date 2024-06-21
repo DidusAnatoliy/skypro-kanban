@@ -3,9 +3,10 @@ import { statusList } from "../../data.js"
 import Column from "../Column/Column.jsx"
 import * as S from "./Main.styled.js"
 import { Container } from "../Common/Common.styled.js"
+import { useCardContext } from "../../contexts/useUser.jsx"
 
-function Main({ cards, isLoading, error }) {
-  
+function Main({ isLoading, error }) {
+  const {cards} = useCardContext();
   return (
     <S.Main>
       <Container>
