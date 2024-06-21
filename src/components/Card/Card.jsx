@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import * as S from './Card.styled'
+
 function Card({ topic, title, date, _id }) {
+  
   const topicColors = {
     "Web Design": "_orange",
     Copywriting: "_purple",
