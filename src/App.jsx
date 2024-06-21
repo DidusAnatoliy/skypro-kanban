@@ -10,7 +10,6 @@ function App() {
       <S.Wrapper>
         <GlobalStyle />
         <AppRoutes/>
-
       </S.Wrapper>
     </>
   )

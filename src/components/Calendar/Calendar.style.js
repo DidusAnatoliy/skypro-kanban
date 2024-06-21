@@ -1,5 +1,8 @@
 // import styled from "styled-components";
 
+import { DayPicker } from "react-day-picker";
+import styled from "styled-components";
+
 // export const CalendarBlock = styled.div`
 //   display: block;
 // `;
@@ -149,3 +152,7 @@
 //     color: #000000;
 //   }
 // `;
+
+export const StyledDayPicker = styled(DayPicker)`
+  --rdp-cell-size: 38px;
+`

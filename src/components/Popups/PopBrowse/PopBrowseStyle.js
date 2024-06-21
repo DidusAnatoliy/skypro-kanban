@@ -71,7 +71,7 @@ export const CategotiesTheme = styled.div`
   display: block;
   opacity: 1 !important;
   background-color: ${({ $topic }) =>
-    topicStyles[$topic]?.backgroundColor || "#94A6BE"};
+        topicStyles[$topic]?.backgroundColor || "#94A6BE"};
   & p {
     font-size: 14px;
     font-weight: 600;
