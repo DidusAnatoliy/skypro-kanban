@@ -136,13 +136,6 @@ function PopNewCard() {
                   />
                 <p>Copywriting</p>
                 </S.PopNewCardLabelR>
-                {/* <div className="categories__theme _orange _active-category">
-                  <p className="_orange">Web Design</p>
-                </div>
-	@@ -119,19 +152,18 @@ const {setCards} = useCardContext();
-                <div className="categories__theme _purple">
-                  <p className="_purple">Copywriting</p>
-                </div> */}
               </S.CategoriesThemes>
             </S.Categories>
             {error && <p style={{ color: "red" }}>{error}</p>}
