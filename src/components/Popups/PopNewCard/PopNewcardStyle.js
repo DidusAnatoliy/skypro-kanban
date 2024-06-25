@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import { hover01 } from "../../Common/Common.styled";
 
 export const PopNewCard = styled.div`
@@ -166,9 +166,13 @@ export const PopNewCardLabel = styled.label`
   opacity: 0.4;
   background-color: #FFE4C2;
   color: #FF6D00;
-  &:hover {
-    opacity: 1 !important;
-  }
+
+  ${(props) => props.$active && css`opacity: 1 !important;`};
+
+  //&:hover {
+  //  opacity: 1 !important;
+  //}
+
   & p {
     font-size: 14px;
     font-weight: 600;
@@ -188,10 +192,12 @@ export const PopNewCardLabelC = styled.label`
   opacity: 0.4;
   background-color: #B4FDD1;
   color: #06B16E;
-  
-  &:hover {
-    opacity: 1 !important;
-  }
+
+  ${(props) => props.$active && css`opacity: 1 !important;`};
+
+  //&:hover {
+  //  opacity: 1 !important;
+  //}
   & p {
     font-size: 14px;
     font-weight: 600;
@@ -210,9 +216,12 @@ export const PopNewCardLabelR = styled.label`
   opacity: 0.4;
   background-color: #E9D4FF;
   color: #9A48F1;
-  &:hover {
-    opacity: 1 !important;
-  }
+
+  ${(props) => props.$active && css`opacity: 1 !important;`};
+
+  //&:hover {
+  //  opacity: 1 !important;
+  //}
   & p {
     font-size: 14px;
     font-weight: 600;

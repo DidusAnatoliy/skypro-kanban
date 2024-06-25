@@ -56,7 +56,7 @@ function PopNewCard() {
 
     setNewCard({
       ...newCard,
-      [name]: value,
+      [name]: name === "topic" ? e.target.dataset.id : value,
     });
   };
   // function showError(errorText) {
@@ -105,36 +105,17 @@ function PopNewCard() {
             <S.Categories>
               <S.CategoriesP>Категория</S.CategoriesP>
               <S.CategoriesThemes>
-                <S.PopNewCardLabel>
-                <S.LabelPW
-                    type="radio"
-                    id="radio1"
-                    name="topic"
-                    value="Web Design"
-                    onChange={handleInputChange}
-                  />
+                <S.PopNewCardLabel $active={newCard.topic==="Web Design"}>
                   <p>Web Design</p>
+                  <S.LabelPW type="radio" name="topic" data-id={"Web Design"} hidden value={newCard.topic==="Web Design"} onChange={handleInputChange} />
                 </S.PopNewCardLabel>
-
-                <S.PopNewCardLabelC>
-                <S.LabelC
-                    type="radio"
-                    id="radio2"
-                    name="topic"
-                    value="Research"
-                    onChange={handleInputChange}
-                  />
-                <p>Research</p>
+                <S.PopNewCardLabelC $active={newCard.topic==="Research"}>
+                  <p>Research</p>
+                  <S.LabelC type="radio" name="topic" data-id={"Research"} hidden value={newCard.topic==="Research"} onChange={handleInputChange} />
                 </S.PopNewCardLabelC>
-                <S.PopNewCardLabelR>
-                  <S.LabelR
-                    type="radio"
-                    id="radio3"
-                    name="topic"
-                    value="Copywriting"
-                    onChange={handleInputChange}
-                  />
-                <p>Copywriting</p>
+                <S.PopNewCardLabelR $active={newCard.topic==="Copywriting"}>
+                  <p>Copywriting</p>
+                  <S.LabelR type="radio" name="topic" data-id={"Copywriting"} hidden value={newCard.topic==="Copywriting"} onChange={handleInputChange} />
                 </S.PopNewCardLabelR>
               </S.CategoriesThemes>
             </S.Categories>
