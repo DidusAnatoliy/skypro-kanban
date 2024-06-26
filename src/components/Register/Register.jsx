@@ -14,9 +14,11 @@ import { paths } from "../../data";
 import { useState } from "react";
 import { registerUser } from "../../Api";
 import { sanitizeHtml } from "../../lib/sanitizeHtml";
+import { useUserContext } from "../../contexts/useUser";
 
-const Register = ({ userReg }) => {
+const Register = () => {
   const [error, setError] = useState(null);
+  const {userReg} = useUserContext();
 
   const [name, setName] = useState("");
   const [login, setLogin] = useState("");

@@ -1,8 +1,10 @@
-import React from 'react'
+
 import { Navigate, Outlet } from 'react-router-dom'
 import { paths } from '../../data';
+import { useUserContext } from '../../contexts/useUser';
 
-function PrivateRoute({ user }) {
+function PrivateRoute() {
+  const {user} = useUserContext()
   return (user ? <Outlet/> : <Navigate to={paths.LOGIN}/>);
 }
 

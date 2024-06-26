@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
 import * as S from "./PopExit.styled"
 import { paths } from "../../../data"
+import { useUserContext } from "../../../contexts/useUser"
 
-function PopExit({Logout}) {
+function PopExit() {
+  const {Logout} = useUserContext();
   return (
     <S.PopExit id="popExit">
       <S.PopExitContainer>

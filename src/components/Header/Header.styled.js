@@ -13,7 +13,7 @@ export const HeaderButton = styled.button`
   line-height: 1;
   font-weight: 500;
   margin-right: 20px;
-
+& a {color: inherit}
   /* Применение hover01 */
   ${hover01}
 `;

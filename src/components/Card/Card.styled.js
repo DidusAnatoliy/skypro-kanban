@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { topicStyles } from '../../lib/topic';
+
 export const CardsItem = styled.div` 
   padding: 5px;
   animation-name: card-animation;

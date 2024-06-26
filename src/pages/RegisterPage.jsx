@@ -1,9 +1,9 @@
 
 import Register from "../components/Register/Register";
 
-const RegisterPage = ({userReg}) => {
+const RegisterPage = () => {
   return (
-    <Register userReg={userReg}/>
+    <Register />
   )
 }
 
