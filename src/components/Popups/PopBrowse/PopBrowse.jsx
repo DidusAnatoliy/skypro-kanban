@@ -25,18 +25,38 @@ import {
   StatusTheme,
   StatusThemes,
   Subttl,
+  EditInput,
+  StatusThemeLight,
 } from "./PopBrowseStyle";
 import { paths } from "../../../data.js";
-import { deleteTodos } from "../../../Api.js";
+import { deleteTodos, editTodos } from "../../../Api.js";
+import { useEffect, useState } from "react";
 
 
 function PopBrowse() {
   const {id} = useParams()
   const {cards, setCards} = useCardContext();
   const {user} = useUserContext();
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 	const currentCard = cards.find((element) => id === element._id)
+  const [popEdit, setPopEdit] = useState(false);
+  const [selected, setSelected] = useState();
+
+  const [saveCards, setSaveCards] = useState({
+    title: currentCard.title,
+    description: currentCard.description,
+    topic: currentCard.topic,
+    date: currentCard.date,
+    status: currentCard.status,
+  });
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setSaveCards({
+      ...saveCards,
+      [name]: value,
+    });
+  };
 
   const handleDeleteClick = (e)=> {
     e.preventDefault();
@@ -52,7 +72,31 @@ function PopBrowse() {
      })
 
   }
-	
+	useEffect(() => {
+    setPopEdit(true);
+  }, []);
+  //Функция, которая будет срабытывать, когда пользователь будет вводить или стирать, какие то данные в поле ввода сохранения.
+  const handleSaveClick =  (e) => {
+    e.preventDefault();
+
+    const { name, value } = e.target; // Извлекаем имя поля и его значение (value)- это value где хранится значение нашего поля ввода.
+
+    setSaveCards({
+      ...saveCards,
+      [name]: value,
+    });
+
+    editTodos({ _id: currentCard._id, token: user.token, newSaveCard: saveCards })
+    .then((response) => {
+      // Обновляем состояние с новыми данными карточек
+      setCards(response.tasks);
+      navigate(paths.MAIN);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+  };
+
   return (
     <PopBrows id="popBrowse">
       <PopBrowseContainer>
@@ -66,68 +110,141 @@ function PopBrowse() {
             </PopBrowseTopBlock>
             <PopBrowseStatus>
               <PopBrowseStatusP>Статус</PopBrowseStatusP>
-              <StatusThemes>
-                {/* <div className="status__theme _hide">
-										<p>Без статуса</p>
-									</div> */}
-                <StatusTheme>
-                  <p>{currentCard.status}</p>
-                </StatusTheme>
-                {/* <div className="status__theme _hide">
-										<p>В работе</p>
-									</div>
-									<div className="status__theme _hide">
-										<p>Тестирование</p>
-									</div>
-									<div className="status__theme _hide">
-										<p>Готово</p>
-									</div> */}
-              </StatusThemes>
+              {popEdit ? (
+                <StatusThemes>
+                  <StatusThemeLight>
+                    <p>{currentCard.status}</p>
+                    </StatusThemeLight>
+                </StatusThemes>
+              ) : (
+                <StatusThemes>
+                  <StatusTheme>
+                    <label>
+                      <EditInput
+                        type="radio"
+                        id="status1"
+                        name="status"
+                        value="Без статуса"
+                        onChange={handleInputChange}
+                      />
+                      <p>Без статуса</p>
+                    </label>
+                  </StatusTheme>
+                  <StatusTheme>
+                    <label>
+                      <EditInput
+                        type="radio"
+                        id="status2"
+                        name="status"
+                        value="Нужно сделать"
+                        onChange={handleInputChange}
+                      />
+                      <p>Нужно сделать</p>
+                    </label>
+                  </StatusTheme>
+                  <StatusTheme>
+                    <label>
+                      <EditInput
+                        type="radio"
+                        id="status3"
+                        name="status"
+                        value="В работе"
+                        onChange={handleInputChange}
+                      />
+                      <p>В работе</p>
+                    </label>
+                  </StatusTheme>
+                  <StatusTheme>
+                    <label>
+                      <EditInput
+                        type="radio"
+                        id="status4"
+                        name="status"
+                        value="Тестирование"
+                        onChange={handleInputChange}
+                      />
+                      <p>Тестирование</p>
+                    </label>
+                  </StatusTheme>
+                  <StatusTheme>
+                    <label>
+                      <EditInput
+                        type="radio"
+                        id="status5"
+                        name="status"
+                        value="Готово"
+                        onChange={handleInputChange}
+                      />
+                      <p>Готово</p>
+                    </label>
+                  </StatusTheme>
+                </StatusThemes>
+              )}
             </PopBrowseStatus>
             <PopBrowseWrap>
               <PopBrowseForm id="formBrowseCard" action="#">
                 <PopBrowseFormBlock>
                   <Subttl htmlFor="textArea01">Описание задачи</Subttl>
-                  <FormBrowseArea
-                    name="text"
-                    id="textArea01"
-                    readOnly
-                    placeholder="Введите описание задачи..."
-                  ></FormBrowseArea>
+                  {popEdit ? (
+                    <FormBrowseArea
+                      value={currentCard.description}
+                      name="description"
+                      id="textArea1"
+                      disabled
+                      onChange={handleInputChange}
+                    >
+                      {/* <p>{currentCard.description}</p> */}
+                    </FormBrowseArea>
+                  ) : (
+                    <FormBrowseArea
+                      value={saveCards.description}
+                      name="description"
+                      id="textArea2"
+                      onChange={handleInputChange}
+                    >
+                      {/* <p>{currentCard.description}</p> */}
+                    </FormBrowseArea>
+                  )}
                 </PopBrowseFormBlock>
               </PopBrowseForm>
               <PopBrowseCalendar>
                 <PopBrowseCalendarTtl>Даты</PopBrowseCalendarTtl>
-                <Calendar/>
+                {popEdit ? <Calendar selected={currentCard.date}/> : <Calendar selected={selected} setSelected={setSelected}/>}
               </PopBrowseCalendar>
             </PopBrowseWrap>
-            {/* <div className="theme-down__categories theme-down">
-								<p className="categories__p subttl">Категория</p>
-								<div className="categories__theme _orange _active-category">
-									<p className="_orange">Web Design</p>
-								</div>
-							</div> */}
+
             <PopBrowseBtn>
-              <BtnGroup>
-                <BtnBor>
-                  <Link>Редактировать задачу</Link>
-                </BtnBor>
-                <BtnBor onClick={handleDeleteClick}>
-                  Удалить задачу
-                </BtnBor>
-              </BtnGroup>
+              {popEdit ? (
+                <BtnGroup>
+                  <BtnBor
+                    onClick={() => {
+                      setPopEdit(false);
+                    }}
+                  >
+                    Редактировать задачу
+                  </BtnBor>
+                  <BtnBor onClick={handleDeleteClick}>Удалить задачу</BtnBor>
+                </BtnGroup>
+              ) : (
+                <BtnGroup>
+                  <BtnBor onClick={handleSaveClick}>
+                    Сохранить
+                  </BtnBor>
+                  <BtnBor
+                    onClick={() => {
+                      setPopEdit(true);
+                    }}
+                  >
+                    Отменить
+                  </BtnBor>
+                  <BtnBor onClick={handleDeleteClick}>Удалить задачу</BtnBor>
+                </BtnGroup>
+              )}
               <BtnBg>
                 <Link to={paths.MAIN}>Закрыть</Link>
               </BtnBg>
             </PopBrowseBtn>
-            {/* <div className="pop-browse__btn-edit _hide">
-								<div className="btn-group">
-									<BtnBg><a href="#">Сохранить</a></BtnBg>
-									<BtnBo"><a href="#">Отменить</a></BtnBo>
-									<BtnBo" id="btnDelete"><a href="#">Удалить задачу</a></BtnBo>
-								</div>
-								<BtnBg><Link to={paths.MAIN}>Закрыть</Link></BtnBg>
-							</div> */}
+
           </PopBrowseContent>
         </PopBrowseBlock>
       </PopBrowseContainer>

@@ -46,8 +46,8 @@ export const statusList = [
     CARD: "/card/:id",
     NEWCARD: "/new-card",
     NOT_FOUND: "*",
-    POPBROWSE: "/card/:id",
   };
+
   export const Colomns = [
     {
         id: 1,
@@ -73,8 +73,8 @@ export const statusList = [
     id: 5,
     status: "Готово",
     index: 4,
-  }
-    ]
+  },
+    ];
 
   export const formFields = {
     name: "",

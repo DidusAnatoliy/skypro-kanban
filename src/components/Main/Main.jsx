@@ -1,5 +1,5 @@
 
-import { Colomns, statusList } from "../../data.js"
+import { Colomns } from "../../data.js"
 import Column from "../Column/Column.jsx"
 import * as S from "./Main.styled.js"
 import { Container } from "../Common/Common.styled.js"
