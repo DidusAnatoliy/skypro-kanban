@@ -50,5 +50,4 @@ function Card({ topic, title, date, _id }) {
     </S.CardsItem>
   )
 }
-
 export default Card
