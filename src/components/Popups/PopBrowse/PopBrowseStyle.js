@@ -105,6 +105,7 @@ export const StatusTheme = styled.div`
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
+  background-color: #fff;
   & p {
     font-size: 14px;
     line-height: 1;

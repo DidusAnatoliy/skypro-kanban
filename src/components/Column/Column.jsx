@@ -14,7 +14,7 @@ function Column({ status, cardList, index }) {
         index={index}
       >
         {(provided) => (
-          <div
+          <S.Col
             ref={provided.innerRef}
             {...provided.droppableProps}
             {...provided.dragHandleProps}
@@ -50,7 +50,7 @@ function Column({ status, cardList, index }) {
               })}
             </S.Cards>
             {provided.placeholder}
-          </div>
+          </S.Col>
         )}
       </Droppable>
     </S.MainColumn>

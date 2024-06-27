@@ -86,7 +86,11 @@ function PopBrowse() {
       [name]: value,
     });
 
-    editTodos({ _id: currentCard._id, token: user.token, newSaveCard: saveCards })
+    editTodos({
+      _id: currentCard._id,
+      token: user.token,
+      newSaveCard: saveCards,
+    })
     .then((response) => {
       // Обновляем состояние с новыми данными карточек
       setCards(response.tasks);
@@ -119,7 +123,7 @@ function PopBrowse() {
               ) : (
                 <StatusThemes>
                   <StatusTheme>
-                    <label>
+                    
                       <EditInput
                         type="radio"
                         id="status1"
@@ -128,10 +132,10 @@ function PopBrowse() {
                         onChange={handleInputChange}
                       />
                       <p>Без статуса</p>
-                    </label>
+                    
                   </StatusTheme>
                   <StatusTheme>
-                    <label>
+                    
                       <EditInput
                         type="radio"
                         id="status2"
@@ -140,10 +144,10 @@ function PopBrowse() {
                         onChange={handleInputChange}
                       />
                       <p>Нужно сделать</p>
-                    </label>
+                   
                   </StatusTheme>
                   <StatusTheme>
-                    <label>
+                   
                       <EditInput
                         type="radio"
                         id="status3"
@@ -152,10 +156,10 @@ function PopBrowse() {
                         onChange={handleInputChange}
                       />
                       <p>В работе</p>
-                    </label>
+                    
                   </StatusTheme>
                   <StatusTheme>
-                    <label>
+                   
                       <EditInput
                         type="radio"
                         id="status4"
@@ -164,10 +168,10 @@ function PopBrowse() {
                         onChange={handleInputChange}
                       />
                       <p>Тестирование</p>
-                    </label>
+                    
                   </StatusTheme>
                   <StatusTheme>
-                    <label>
+                    
                       <EditInput
                         type="radio"
                         id="status5"
@@ -176,7 +180,7 @@ function PopBrowse() {
                         onChange={handleInputChange}
                       />
                       <p>Готово</p>
-                    </label>
+                    
                   </StatusTheme>
                 </StatusThemes>
               )}

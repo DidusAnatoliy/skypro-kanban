@@ -23,6 +23,7 @@ const Register = () => {
   const [name, setName] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  
 
   const handleInputChange = async () => {
   if (!name.trim()||!login.trim()||!password.trim()){

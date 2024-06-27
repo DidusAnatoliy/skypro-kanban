@@ -3,11 +3,13 @@ import { Colomns } from "../../data.js"
 import Column from "../Column/Column.jsx"
 import * as S from "./Main.styled.js"
 import { Container } from "../Common/Common.styled.js"
-import { useCardContext } from "../../contexts/useUser.jsx"
+import { useCardContext, useUserContext } from "../../contexts/useUser.jsx"
 import { DragDropContext } from "react-beautiful-dnd"
+
 
 function Main({ isLoading, error }) {
   const {cards, setCards} = useCardContext();
+  const { user } = useUserContext();
 
   return (
     <S.Main>
@@ -15,7 +17,7 @@ function Main({ isLoading, error }) {
         <S.MainBlock>
           {isLoading ? (
             <DragDropContext
-              onDragEnd={({ source, destination }) => {
+              onDragEnd={async ({ source, destination }) => {
                 if (!destination) return;
                 if (
                   source.droppableId === destination.droppableId &&
@@ -24,11 +26,34 @@ function Main({ isLoading, error }) {
                   return;
                 }
 
-                const newCards = Array.from(cards);
+                console.log("Source:", source);
+                console.log("Destination:", destination);
+
+                const newCards = [...cards];
                 const [removedCard] = newCards.splice(source.index, 1);
                 newCards.splice(destination.index, 0, removedCard);
 
                 setCards(newCards);
+                const newStatus = Colomns.find(
+                  (column) => column.id.toString() === destination.droppableId
+                ).status;
+
+                const newSaveCard = newCards.find(
+                  (card) => card._id === removedCard._id
+                );
+
+                newSaveCard.status = newStatus;
+                setCards(newCards);
+
+                console.log(removedCard._id);
+                console.log(removedCard.status);
+
+                // console.log(newCards[source.index]._id);
+                await editTodos({
+                  _id: newSaveCard._id,
+                  token: user.token,
+                  newSaveCard,
+                });
               }}
             >
               <S.MainContent>
