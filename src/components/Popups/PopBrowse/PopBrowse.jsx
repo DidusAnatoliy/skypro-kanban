@@ -27,6 +27,7 @@ import {
   Subttl,
   EditInput,
   StatusThemeLight,
+  EditLabel
 } from "./PopBrowseStyle";
 import { paths } from "../../../data.js";
 import { deleteTodos, editTodos } from "../../../Api.js";
@@ -34,11 +35,11 @@ import { useEffect, useState } from "react";
 
 
 function PopBrowse() {
-  const {id} = useParams()
-  const {cards, setCards} = useCardContext();
-  const {user} = useUserContext();
+  const { id } = useParams()
+  const { cards, setCards } = useCardContext();
+  const { user } = useUserContext();
   const navigate = useNavigate();
-	const currentCard = cards.find((element) => id === element._id)
+  const currentCard = cards.find((element) => id === element._id)
   const [popEdit, setPopEdit] = useState(false);
   const [selected, setSelected] = useState();
 
@@ -58,25 +59,25 @@ function PopBrowse() {
     });
   };
 
-  const handleDeleteClick = (e)=> {
+  const handleDeleteClick = (e) => {
     e.preventDefault();
 
-     deleteTodos({_id: currentCard._id, token: user.token})
-     .then((response) => {
-      // Обновляем состояние с новыми данными карточек
-      setCards(response.tasks);
-      navigate(paths.MAIN)
-     })
-     .catch((err) => {
-      console.log(err.message)
-     })
+    deleteTodos({ _id: currentCard._id, token: user.token })
+      .then((response) => {
+        // Обновляем состояние с новыми данными карточек
+        setCards(response.tasks);
+        navigate(paths.MAIN)
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
 
   }
-	useEffect(() => {
+  useEffect(() => {
     setPopEdit(true);
   }, []);
   //Функция, которая будет срабытывать, когда пользователь будет вводить или стирать, какие то данные в поле ввода сохранения.
-  const handleSaveClick =  (e) => {
+  const handleSaveClick = (e) => {
     e.preventDefault();
 
     const { name, value } = e.target; // Извлекаем имя поля и его значение (value)- это value где хранится значение нашего поля ввода.
@@ -91,14 +92,14 @@ function PopBrowse() {
       token: user.token,
       newSaveCard: saveCards,
     })
-    .then((response) => {
-      // Обновляем состояние с новыми данными карточек
-      setCards(response.tasks);
-      navigate(paths.MAIN);
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
+      .then((response) => {
+        // Обновляем состояние с новыми данными карточек
+        setCards(response.tasks);
+        navigate(paths.MAIN);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   return (
@@ -118,12 +119,12 @@ function PopBrowse() {
                 <StatusThemes>
                   <StatusThemeLight>
                     <p>{currentCard.status}</p>
-                    </StatusThemeLight>
+                  </StatusThemeLight>
                 </StatusThemes>
               ) : (
                 <StatusThemes>
                   <StatusTheme>
-                    
+                    <EditLabel>
                       <EditInput
                         type="radio"
                         id="status1"
@@ -132,10 +133,10 @@ function PopBrowse() {
                         onChange={handleInputChange}
                       />
                       <p>Без статуса</p>
-                    
+                    </EditLabel>
                   </StatusTheme>
                   <StatusTheme>
-                    
+                    <EditLabel>
                       <EditInput
                         type="radio"
                         id="status2"
@@ -144,10 +145,10 @@ function PopBrowse() {
                         onChange={handleInputChange}
                       />
                       <p>Нужно сделать</p>
-                   
+                    </EditLabel>
                   </StatusTheme>
                   <StatusTheme>
-                   
+                    <EditLabel>
                       <EditInput
                         type="radio"
                         id="status3"
@@ -156,10 +157,10 @@ function PopBrowse() {
                         onChange={handleInputChange}
                       />
                       <p>В работе</p>
-                    
+                    </EditLabel>
                   </StatusTheme>
                   <StatusTheme>
-                   
+                    <EditLabel>
                       <EditInput
                         type="radio"
                         id="status4"
@@ -168,10 +169,10 @@ function PopBrowse() {
                         onChange={handleInputChange}
                       />
                       <p>Тестирование</p>
-                    
+                    </EditLabel>
                   </StatusTheme>
                   <StatusTheme>
-                    
+                    <EditLabel>
                       <EditInput
                         type="radio"
                         id="status5"
@@ -180,7 +181,7 @@ function PopBrowse() {
                         onChange={handleInputChange}
                       />
                       <p>Готово</p>
-                    
+                    </EditLabel>
                   </StatusTheme>
                 </StatusThemes>
               )}
@@ -213,7 +214,7 @@ function PopBrowse() {
               </PopBrowseForm>
               <PopBrowseCalendar>
                 <PopBrowseCalendarTtl>Даты</PopBrowseCalendarTtl>
-                {popEdit ? <Calendar selected={currentCard.date}/> : <Calendar selected={selected} setSelected={setSelected}/>}
+                {popEdit ? <Calendar selected={currentCard.date} /> : <Calendar selected={selected} setSelected={setSelected} />}
               </PopBrowseCalendar>
             </PopBrowseWrap>
 

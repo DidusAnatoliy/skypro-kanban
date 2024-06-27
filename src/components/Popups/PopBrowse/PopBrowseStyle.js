@@ -106,11 +106,15 @@ export const StatusTheme = styled.div`
   margin-right: 7px;
   margin-bottom: 7px;
   background-color: #fff;
+  &:hover{
+    background-color: #94a6be;
   & p {
+    color: #94a6be;
     font-size: 14px;
     line-height: 1;
     letter-spacing: -0.14px;
   }
+}
 `;
 
 export const PopBrowseWrap = styled.div`
