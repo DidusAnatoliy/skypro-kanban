@@ -78,7 +78,7 @@ body {
   color: #FFFFFF;
 } */
 
-.pop-user-set:target,
+/* .pop-user-set:target,
 .pop-exit:target,
 .pop-new-card:target,
 .pop-browse:target {
@@ -125,7 +125,7 @@ body {
   top: 0;
   left: 0;
   z-index: 5;
-}
+} */
 /* .pop-exit__container {
   width: 100%;
   height: 100%;
@@ -276,7 +276,7 @@ body {
   color: #565EEF;
 } */
 
-.pop-new-card {
+/* .pop-new-card {
   display: block;
   width: 100%;
   min-width: 375px;
@@ -407,7 +407,7 @@ body {
 .calendar__ttl {
   margin-bottom: 14px;
   padding: 0 7px;
-}
+} */
 /* .calendar__p {
   color: #94A6BE;
   font-size: 10px;
@@ -489,25 +489,25 @@ body {
   align-items: center;
   justify-content: center;
 } */
-.nav__action svg {
+/* .nav__action svg {
   fill: #94A6BE;
-}
+} */
 
 /* ._other-month {
   opacity: 0;
 } */
 
-._cell-day:hover {
+/* ._cell-day:hover {
   color: #94A6BE;
   background-color: #EAEEF6;
-}
+} */
 
 /* ._active-day {
   background-color: #94A6BE;
   color: #FFFFFF;
 } */
 
-._current {
+/* ._current {
   font-weight: 700;
 }
 
@@ -717,7 +717,7 @@ body {
   width: 100%;
   margin: 0 auto;
   background-color: #FFFFFF;
-}
+} */
 /* .header__block {
   height: 70px;
   display: flex;
@@ -805,7 +805,7 @@ body {
   width: 100%;
   display: flex;
 } */
-.main__column {
+/* .main__column {
   width: 20%;
   margin: 0 auto;
   display: block;
@@ -827,7 +827,7 @@ body {
   width: 100%;
   display: block;
   position: relative;
-}
+} */
 /* .cards__item {
   padding: 5px;
   animation-name: card-animation;

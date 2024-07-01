@@ -101,20 +101,12 @@ export const StatusThemes = styled.div`
 export const StatusTheme = styled.div`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
-  color: #94a6be;
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
-  background-color: #fff;
-  &:hover{
-    background-color: #94a6be;
-  & p {
-    color: #94a6be;
-    font-size: 14px;
-    line-height: 1;
-    letter-spacing: -0.14px;
-  }
-}
+  cursor: pointer;
+  color: ${({$active})=>$active ?'#fff':'#94a6be'};
+  background-color:${({$active})=>$active ?'#94a6be':'#fff'};
 `;
 
 export const PopBrowseWrap = styled.div`
@@ -230,15 +222,8 @@ export const EditInput = styled.input`
 `;
 
 export const EditLabel = styled.label`
-  color: #94a6be;
-  & p {
-    color: #94a6be;
-    &:hover {
-      color: #fff;
-      background-color: #94a6be;
-    }
-  }
-  
+  color: ${({$active})=>$active ?'#fff':'#94a6be'};
+  background-color:${({$active})=>$active ?'#94a6be':'#fff'};
 `;
 
 export const StatusThemeLight = styled.div`

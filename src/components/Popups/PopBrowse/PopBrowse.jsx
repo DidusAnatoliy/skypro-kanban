@@ -29,7 +29,7 @@ import {
   StatusThemeLight,
   EditLabel
 } from "./PopBrowseStyle";
-import { paths } from "../../../data.js";
+import { paths, statusList } from "../../../data.js";
 import { deleteTodos, editTodos } from "../../../Api.js";
 import { useEffect, useState } from "react";
 
@@ -50,13 +50,8 @@ function PopBrowse() {
     date: currentCard.date,
     status: currentCard.status,
   });
-  const handleInputChange = (e) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    setSaveCards({
-      ...saveCards,
-      [name]: value,
-    });
+  const handleInputChange = (status) => {
+   setSaveCards({...saveCards,status})
   };
 
   const handleDeleteClick = (e) => {
@@ -101,7 +96,14 @@ function PopBrowse() {
         console.log(err.message);
       });
   };
-
+  const topicColors = {
+    "Web Design": "_orange",
+    Copywriting: "_purple",
+    Research: "_green",
+    default: "_gray",
+  }
+  const color = topicColors[currentCard.topic] || topicColors.default;
+ 
   return (
     <PopBrows id="popBrowse">
       <PopBrowseContainer>
@@ -109,7 +111,7 @@ function PopBrowse() {
           <PopBrowseContent>
             <PopBrowseTopBlock>
               <PopBrowseTtl>Задача: {currentCard.title}</PopBrowseTtl>
-              <CategotiesTheme $topic={currentCard.topic}>
+              <CategotiesTheme $topic={color}>
                 <p>{currentCard.topic}</p>
               </CategotiesTheme>
             </PopBrowseTopBlock>
@@ -123,66 +125,11 @@ function PopBrowse() {
                 </StatusThemes>
               ) : (
                 <StatusThemes>
-                  <StatusTheme>
-                    <EditLabel>
-                      <EditInput
-                        type="radio"
-                        id="status1"
-                        name="status"
-                        value="Без статуса"
-                        onChange={handleInputChange}
-                      />
-                      <p>Без статуса</p>
-                    </EditLabel>
+                  {statusList.map((el)=>(
+                    <StatusTheme $active = {el===saveCards.status} onClick={()=>handleInputChange(el)}>
+                      <p>{el}</p>
                   </StatusTheme>
-                  <StatusTheme>
-                    <EditLabel>
-                      <EditInput
-                        type="radio"
-                        id="status2"
-                        name="status"
-                        value="Нужно сделать"
-                        onChange={handleInputChange}
-                      />
-                      <p>Нужно сделать</p>
-                    </EditLabel>
-                  </StatusTheme>
-                  <StatusTheme>
-                    <EditLabel>
-                      <EditInput
-                        type="radio"
-                        id="status3"
-                        name="status"
-                        value="В работе"
-                        onChange={handleInputChange}
-                      />
-                      <p>В работе</p>
-                    </EditLabel>
-                  </StatusTheme>
-                  <StatusTheme>
-                    <EditLabel>
-                      <EditInput
-                        type="radio"
-                        id="status4"
-                        name="status"
-                        value="Тестирование"
-                        onChange={handleInputChange}
-                      />
-                      <p>Тестирование</p>
-                    </EditLabel>
-                  </StatusTheme>
-                  <StatusTheme>
-                    <EditLabel>
-                      <EditInput
-                        type="radio"
-                        id="status5"
-                        name="status"
-                        value="Готово"
-                        onChange={handleInputChange}
-                      />
-                      <p>Готово</p>
-                    </EditLabel>
-                  </StatusTheme>
+                  ))}
                 </StatusThemes>
               )}
             </PopBrowseStatus>
@@ -192,11 +139,10 @@ function PopBrowse() {
                   <Subttl htmlFor="textArea01">Описание задачи</Subttl>
                   {popEdit ? (
                     <FormBrowseArea
-                      value={currentCard.description}
+                      value={saveCards.description}
                       name="description"
                       id="textArea1"
-                      disabled
-                      onChange={handleInputChange}
+                      disabled                   
                     >
                       {/* <p>{currentCard.description}</p> */}
                     </FormBrowseArea>
@@ -205,7 +151,7 @@ function PopBrowse() {
                       value={saveCards.description}
                       name="description"
                       id="textArea2"
-                      onChange={handleInputChange}
+                      onChange={(e)=>setSaveCards({...saveCards,description: e.target.value})}
                     >
                       {/* <p>{currentCard.description}</p> */}
                     </FormBrowseArea>
