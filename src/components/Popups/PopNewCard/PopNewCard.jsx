@@ -14,6 +14,8 @@ function PopNewCard() {
 
   const [selected, setSelected] = useState();
 
+  const [isNewCardsLoading, setIsNewCardsLoading] = useState(false);
+
   const [newCard, setNewCard] = useState({
     title: "",
     description: "",
@@ -37,6 +39,7 @@ function PopNewCard() {
       // showError("Заполни все поля");
       return;
     }
+    setIsNewCardsLoading(true);
     const newCardUser = { ...newCard, date: selected };
     postTodos({ ...newCardUser, token: user?.token })
       .then((response) => {
@@ -46,7 +49,10 @@ function PopNewCard() {
       .catch((err) => {
         console.log(err.message);
         setError(err.message);
-      });
+    })
+    .finally(() => {
+      setIsNewCardsLoading(false);
+    });
   };
 
   //Функция, которая будет срабытывать, когда пользователь будет вводить или стирать, какие то данные в поле ввода.

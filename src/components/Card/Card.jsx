@@ -4,7 +4,7 @@ import { formatDate } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
 function Card({ topic, title, date, _id }) {
-  
+
   const topicColors = {
     "Web Design": "_orange",
     Copywriting: "_purple",
@@ -50,5 +50,4 @@ function Card({ topic, title, date, _id }) {
     </S.CardsItem>
   )
 }
-
 export default Card
